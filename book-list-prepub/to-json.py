@@ -133,7 +133,10 @@ def extract_author_sort_key(author):
     if author == NO_AUTHOR:
         return author
     words = author.split()
-    return words.pop()
+    if words[0] == 'The':  # assume no-one is called 'The'
+        return words[0]
+    else:
+        return words.pop()
 
 def extract_title_sort_key(title):
     return title
