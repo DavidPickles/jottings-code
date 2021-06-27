@@ -6,7 +6,7 @@ import json
 
 def main():
     parser = RecordParser()
-    parser.parse(sys.stdin)
+    number_of_lines = parser.parse(sys.stdin)
     print(json.dumps(parser.books_content))
 
 
@@ -34,6 +34,7 @@ class RecordParser:
             self.parseLine(line, line_number)
         if self.book:
             self.books_content['books'].append(self.book)
+        return line_number
 
 
     def parseLine(self, line, line_number):

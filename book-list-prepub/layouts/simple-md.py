@@ -5,6 +5,7 @@ def print_book(book):
     print_title(book['title'])
     print_rating(book['rating'], book['rating_warning'])
     print_remarks(book['remarks'])
+    print()
 
 
 def print_title(title):
