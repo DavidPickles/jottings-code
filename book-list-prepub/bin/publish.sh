@@ -8,7 +8,7 @@ render_args='all author simple-md'
 prepub_dir='prepub'
 pub_file_path="$prepub_dir/$pub_file"
 jottings_dir=$(greadlink -f '../../jottings')
-publish_dir="$jottings_dir/docs"
+publish_dir=$(greadlink -f '../../jottings-pub')
 
 
 function render() {
@@ -17,22 +17,21 @@ function render() {
 
 function publish() {
     if [ ! -s "$pub_file_path" ]; then
-        echo "$pub_file_path is empty! (Did you forget to checkout the master branch of jottings?)"
+        echo "$pub_file_path is empty!"
         exit 1
     fi
 
-    pushd "$jottings_dir"
-    git checkout published
+    pushd "$publish_dir"
+    git checkout main
     popd
 
     cp "$pub_file_path" "$publish_dir"
 
-    pushd "$jottings_dir"
-    git add "$publish_dir"
+    pushd "$publish_dir"
+    git add .
     git status
     git commit -m 'new book record'
     git push
-    git checkout master
     popd
 }
 

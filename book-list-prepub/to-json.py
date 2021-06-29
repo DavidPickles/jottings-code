@@ -16,6 +16,7 @@ BOOKS_STATE = 3
 
 NO_AUTHOR = '<NO AUTHOR>'
 NO_TITLE = '<NO TITLE>'
+NO_MEETING_DATE = '<NO MEETING DATE>'
 
 class RecordParser:
     def __init__(self):
@@ -88,6 +89,7 @@ def is_new_book(line):
 
 def new_book():
     return { 'title': NO_TITLE, 'author': NO_AUTHOR, 'remarks': [], 'rating': -1, 'rating_warning': False,
+             'meeting_date': NO_MEETING_DATE,
              'sort_keys': {
                  'author': NO_AUTHOR, 'title': NO_TITLE
              }}
@@ -146,12 +148,14 @@ def extract_title_sort_key(title):
 
 
 def add_rating_line(book, line, line_number):
-    rating_pattern = re.compile(r'rating: (\d+)\s*(warning)?')
+    rating_pattern = re.compile(r'rating: (\d+)\s*(warning)?\s*((?:pre-)?\d{4})?')
     m = rating_pattern.match(line)
     if m:
         book['rating'] = int(m.group(1))
         if m.group(2):
             book['rating_warning'] = True
+        if m.group(3):
+            book['meeting_date'] = m.group(3)
     return book
 
 
