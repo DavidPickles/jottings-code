@@ -23,7 +23,7 @@ def print_rating(rating, warning):
     else:
         warningSymbol = ''
         if warning:
-            warningSymbol = ' ⚠'
+            warningSymbol = ' :warning:'
         print('Rating: {}{}'.format(rating, warningSymbol))
 
 def print_meeting_date(meeting_date):
