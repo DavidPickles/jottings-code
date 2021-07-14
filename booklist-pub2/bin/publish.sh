@@ -2,10 +2,15 @@
 set -o errexit
 set -o nounset
 
+command=$1
 pub_file_path=$(greadlink -f '../../jottings')'/books.yml'
-publish_dir=$(greadlink -f '../../jottings-pub')
+publish_proj_dir=$(greadlink -f '../../jottings-pub')
+publish_dir="$publish_proj_dir/_data"
 
 
+function copy() {
+  cp -v "$pub_file_path" "$publish_dir"
+}
 
 function publish() {
     if [ ! -s "$pub_file_path" ]; then
@@ -13,13 +18,13 @@ function publish() {
         exit 1
     fi
 
-    pushd "$publish_dir"
+    pushd "$publish_proj_dir"
     git checkout main
     popd
 
-    cp "$pub_file_path" "$publish_dir"
+    copy
 
-    pushd "$publish_dir"
+    pushd "$publish_proj_dir"
     git add .
     git status
     git commit -m 'new book record'
@@ -27,4 +32,5 @@ function publish() {
     popd
 }
 
-publish
+[[ $command = c ]] && copy
+[[ $command = p ]] && publish
