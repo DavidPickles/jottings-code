@@ -1,4 +1,6 @@
-# THIS IS NOW REDUNDANT. BOOKS LIST IS IN [books.yml](https://github.com/DavidPickles/jottings/blob/master/books.yml)
+THIS IS NOW REDUNDANT use ../booklist-pub2 instead
+
+However there is probably some code here that could be re-used in various maintenance and unfuck scenarios
 
 ## Actions
 

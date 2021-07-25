@@ -1,3 +1,6 @@
 # Jotting Code
 
-# THIS IS NOW REDUNDANT. BOOKS LIST IS IN [books.yml](https://github.com/DavidPickles/jottings/blob/master/books.yml)
+book-list-prepub is redundant
+
+use booklist-pub2 instead - it is based on the booklist source of truth being held in ../jottings/books.yml
+
